@@ -1,4 +1,4 @@
-name: Pipeline com Testes
+name: Pipeline Principal
 
 on:
   push:
@@ -13,7 +13,14 @@ jobs:
 
   testes-unitarios:
     runs-on: ubuntu-latest
-    needs: setup-e-lint   # Job 2 depende do Job 1
+    needs: setup-e-lint    # Job 2 depende do Job 1
     steps:
-      - name: Rodando testes
+      - name: Testes
         run: echo "Rodando testes unitários..."
+
+  scan-de-seguranca:
+    runs-on: ubuntu-latest
+    needs: setup-e-lint    # Job 3 também depende do Job 1
+    steps:
+      - name: Segurança
+        run: echo "Procurando vulnerabilidades..."
