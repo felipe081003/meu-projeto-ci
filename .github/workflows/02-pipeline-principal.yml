@@ -1,32 +1,19 @@
-name: Pipeline Principal
+name: Pipeline com Testes
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   setup-e-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup e análise
+      - name: Mensagem inicial
         run: echo "Analisando qualidade do código..."
 
   testes-unitarios:
     runs-on: ubuntu-latest
-    needs: setup-e-lint
+    needs: setup-e-lint   # Job 2 depende do Job 1
     steps:
-      - name: Testes
+      - name: Rodando testes
         run: echo "Rodando testes unitários..."
-
-  scan-de-seguranca:
-    runs-on: ubuntu-latest
-    needs: setup-e-lint
-    steps:
-      - name: Segurança
-        run: echo "Procurando vulnerabilidades..."
-
-  build-e-deploy:
-    runs-on: ubuntu-latest
-    needs: [testes-unitarios, scan-de-seguranca]
-    steps:
-      - name: Build e Deploy
-        run: echo "Gerando artefato e fazendo deploy..."
