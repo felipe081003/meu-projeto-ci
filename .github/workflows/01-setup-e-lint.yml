@@ -1,0 +1,12 @@
+name: Setup e Lint
+
+on:
+  push:       # dispara em push
+  workflow_dispatch:  # também permite disparo manual
+
+jobs:
+  setup-e-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mensagem inicial
+        run: echo "Analisando qualidade do código..."
